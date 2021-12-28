@@ -5,9 +5,6 @@
         height: 100%;
         .ant-menu{
             height: 100%;
-            &.ant-menu-dark .ant-menu-item-selected{
-                background-color: #74B618;
-            }
         }
     }
     .menu-app {
@@ -22,16 +19,25 @@
             border-bottom: 1px solid #eee;
             padding-left: 10px;
             padding-right: 10px;
-            .ant-btn-primary {
-                background-color: #74B618;
-                border-color: #74B618;
-            }
             .breadcurmb{
                 margin-left: 20px;
                 display: inline-block;
             }
             .userInfo{
                 float: right;
+                padding-right: 10px;
+                cursor: pointer;
+                li:not(:first-child){
+                    display: none;
+                }
+                &:hover{
+                    li:not(:first-child){
+                        display: block;
+                        background-color: #eee;
+                        padding: 0px 10px;
+                        text-align: center;
+                    }
+                }
             }
         }
     }  
