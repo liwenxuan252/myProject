@@ -13,7 +13,7 @@
         <a-input v-model="loginForm.email" type="email" autocomplete="off" />
       </a-form-model-item>
       <a-form-model-item has-feedback label="密码" prop="password">
-        <a-input v-model="loginForm.pass" type="password" autocomplete="off" />
+        <a-input v-model="loginForm.password" type="password" autocomplete="off" />
       </a-form-model-item>
       <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
         <a-button type="primary" @click="submitForm('loginForm')">
@@ -51,7 +51,7 @@ export default {
         password: '',
       },
       rules: {
-        pass: [{ validator: validatePass, trigger: 'change' }],
+        password: [{ validator: validatePass, trigger: 'change' }],
         email: [{ validator: validateEmail, trigger: 'change' }],
       },
       layout: {
@@ -63,12 +63,12 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
-        console.log('提交结果');
         if (valid) {
           api
             .login(this.loginForm)
             .then((res) => {
-              console.log(res, 'api验证结果');
+              console.log(res, '回显的数据');
+              this.$store.dispatch('setUserInfo', res.data);
               this.$router.push({
                 name: 'Home',
               });
