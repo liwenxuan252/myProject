@@ -7,6 +7,7 @@
       :rules="rules"
       v-bind="layout"
       class="login-form"
+
     >
       <h1>Personal System</h1>
       <a-form-model-item has-feedback label="邮箱账号" prop="email">
@@ -39,8 +40,11 @@ export default {
       }
     };
     const validateEmail = (rule, value, callback) => {
+      const rightEmail = /\S+@\S+.com/;
       if (value === '') {
         callback(new Error('请输入账号'));
+      } else if (!rightEmail.test(value)) {
+        callback(new Error('账号格式不正确'));
       } else {
         callback();
       }
@@ -52,7 +56,7 @@ export default {
       },
       rules: {
         password: [{ validator: validatePass, trigger: 'change' }],
-        email: [{ validator: validateEmail, trigger: 'change' }],
+        email: [{ validator: validateEmail, trigger: 'blur' }],
       },
       layout: {
         labelCol: { span: 4 },
